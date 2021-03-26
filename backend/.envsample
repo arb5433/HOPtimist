@@ -1,7 +1,7 @@
 PORT=5000
-DB_USERNAME=auth_app
+DB_USERNAME=hoptimist_app
 DB_PASSWORD=password
-DB_DATABASE=auth_db
+DB_DATABASE=hoptimist_db
 DB_HOST=localhost
 JWT_SECRET=strong_secret
 JWT_EXPIRES_IN=604800
