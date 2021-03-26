@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     style: DataTypes.STRING
   }, {});
   BeerStyle.associate = function(models) {
-    // associations can be defined here
+    BeerStyle.hasMany(models.Beer, {foreignKey: 'styleId'});
   };
   return BeerStyle;
 };

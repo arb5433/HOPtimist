@@ -18,6 +18,11 @@ module.exports = {
         allowNull: false,
         references: {model: 'Countries'}
       },
+      typeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'BreweryTypes'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

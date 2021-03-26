@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   Beer.associate = function(models) {
-    // associations can be defined here
+    Beer.belongsTo(models.Brewery, {foreignKey: 'breweryId'});
+    Beer.belongsTo(models.BeerStyle, {foreignKey: 'styleId'});
+    Beer.hasMany(models.Review, {foreignKey: 'beerId'});
+    Beer.hasMany(models.Wishlist, {foreignKey: 'beerId'});
   };
   return Beer;
 };

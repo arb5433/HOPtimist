@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     beerId: DataTypes.INTEGER
   }, {});
   Wishlist.associate = function(models) {
-    // associations can be defined here
+    Wishlist.belongsTo(models.User, {foreignKey: 'userId'});
+    Wishlist.belongsTo(models.Beer, {foreignKey: 'beerId'});
   };
   return Wishlist;
 };

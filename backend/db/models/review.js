@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: DataTypes.STRING
   }, {});
   Review.associate = function(models) {
-    // associations can be defined here
+    Review.belongsTo(models.User, {foreignKey: 'userId'});
+    Review.belongsTo(models.Beer, {foreignKey: 'beerId'});
   };
   return Review;
 };
