@@ -19,7 +19,7 @@ module.exports = {
         references: {model: 'Breweries'}
       },
       abv: {
-        type: Sequelize.INTEGER
+        type: Sequelize.REAL(4,2)
       },
       ibu: {
         type: Sequelize.INTEGER
@@ -30,15 +30,17 @@ module.exports = {
         references: {model: 'BeerStyles'}
       },
       description:{
-        type: Sequelize.STRING(250)
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
