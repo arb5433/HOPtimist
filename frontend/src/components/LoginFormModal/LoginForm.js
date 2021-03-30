@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch} from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
@@ -22,13 +21,13 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} id>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label id="credentials-modal">
         Username or Email
         <input
           type="text"
@@ -37,7 +36,7 @@ const LoginForm = () => {
           required
         />
       </label>
-      <label>
+      <label id="password-label">
         Password
         <input
           type="password"
@@ -46,7 +45,7 @@ const LoginForm = () => {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" id="login-button">Log In</button>
     </form>
   );
 };
