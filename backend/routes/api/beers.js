@@ -38,12 +38,11 @@ router.get('/styles', asyncHandler(async(req, res) => {
 }));
 
 // X
-// GET the one beer and the associated reviews
+// GET the one beer
 router.get('/:id', asyncHandler(async(req, res) => {
-  const {id} = req.params();
-  const beer = await Beer.findByPk(id);
-  const reviews = await Review.findAll({where: {beerId: id}});
-  return res.json({beer, reviews});
+  const {id} = req.params;
+  const beer = await Beer.findOne({where: {id}, include: [BeerStyle, Brewery]});
+  return res.json(beer);
 }))
 
 // X

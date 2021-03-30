@@ -1,11 +1,13 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 import {getBrews} from '../../store/breweries';
 import {getStyles, addOneBeer} from '../../store/beers';
 
 const AddBeerForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [name, setName] = useState('');
   const [brew, setBrew] = useState('');
@@ -38,6 +40,7 @@ const AddBeerForm = () => {
       description
     }
     dispatch(addOneBeer(data));
+    history.push('/');
   }
 
   return (
@@ -81,7 +84,7 @@ const AddBeerForm = () => {
           <label>Description: </label>
           <textarea value={description} onChange={event => setDescription(event.target.value)}/>
         </div>
-        <button type='sumbit'>Add Beer</button>
+        <button type='submit'>Add Beer</button>
       </form>
     </div>
   )

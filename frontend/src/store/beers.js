@@ -51,9 +51,9 @@ export const getStyles = () => async dispatch => {
 
 export const getOneBeer = (id) => async dispatch => {
   const response = await fetch(`/api/beers/${id}`);
+  console.log('Responce:',response)
   if(response.ok){
     const beer = await response.json();
-    // beerData.beer is the beer, beerData.reviews are an array of all reviews
     dispatch(addBeer(beer));
     return beer;
   }
@@ -92,7 +92,7 @@ export const updateBeer = (data) => async dispatch => {
 };
 
 export const deleteBeer = (id) => async dispatch => {
-  const response = await fetch(`/api/items/${id}`, {
+  const response = await fetch(`/api/beers/${id}`, {
     method: 'delete',
   });
 

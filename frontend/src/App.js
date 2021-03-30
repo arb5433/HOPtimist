@@ -7,7 +7,7 @@ import * as sessionActions from "./store/session";
 import BeerDisplayPage from './components/BeerDisplayPage';
 import BeerReviewPage from './components/BeerReviewPage';
 import AddBeerForm from './components/AddBeerForm';
-
+import AddReviewForm from './components/AddReviewForm';
 
 function App() {
   // restores the user to the store on a refresh
@@ -25,14 +25,17 @@ function App() {
           <Route exact path="/">
             <BeerDisplayPage/>
           </Route>
-          <Route path='/beers/:id'>
+          <Route exact path='/beers/:id'>
             <BeerReviewPage/>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/beers'>
+          <Route exact path='/beers'>
             <AddBeerForm/>
+          </Route>
+          <Route path ='/beers/:id/reviews'>
+            <AddReviewForm/>
           </Route>
         </Switch>
       )}

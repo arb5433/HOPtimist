@@ -41,14 +41,20 @@ const BeerReviewPage = () => {
   return (
     <div>
       <div>
-        <h1>{beer.name}</h1>
-        <p>{beer.BeerStyle.style}</p>
-        <p>{beer.Brewery.name}</p>
-        <p>Overall Rating: {totalRating} Stars</p>
+        {beer && (
+          <div>
+            <h1>{beer.name}</h1>
+            <p>{beer.BeerStyle.style}</p>
+            <p>{beer.Brewery.name}</p>
+            <p>Overall Rating: {totalRating} Stars</p>
+          </div>
+        )}
       </div>
-      <div>
-        {reviews.map(review => <ReviewBlock key={review.id} review={review}/>)}
-      </div>
+      {reviews && (
+        <div>
+          {reviews.map(review => <ReviewBlock key={review.id} review={review}/>)}
+        </div>
+      )}
       <div>
         <NavLink to={`/beers/${beer.id}/reviews`}>Add a new review</NavLink>
       </div>

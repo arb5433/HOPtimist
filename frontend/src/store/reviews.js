@@ -2,6 +2,8 @@
 // key:reviewId, value: review object
 // initialize it to empty
 // load all the reviews from the db into it in the LOAD action (and thunk)
+import {csrfFetch} from './csrf';
+
 
 //constants
 const LOAD = 'reviews/LOAD'
@@ -27,19 +29,19 @@ const deleteReview = (review) => ({
 
 // thunk creators
 
-export const newReview = (data) => async dispatch => {
-  const response = await fetch(`/api/beers/${data.beerId}/reviews/${data.id}`,{
+export const newReview = (review) => async dispatch => {
+  const response = await csrfFetch(`/api/beers/${review.beerId}`,{
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(review),
   });
 
   if(response.ok){
-    const review = await response.json();
-    dispatch(addReview(review));
-    return review;
+    const newReview = await response.json();
+    dispatch(addReview(newReview));
+    return newReview;
   }
 };
 
