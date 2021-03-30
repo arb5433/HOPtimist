@@ -2,7 +2,7 @@
 // key:beerId, value: beer object
 // initialize it to empty
 // load all the beers from the db into it in the LOAD action (and thunk)
-
+import {csrfFetch} from './csrf';
 
 // constants
 const LOAD = 'beers/LOAD';
@@ -52,15 +52,15 @@ export const getStyles = () => async dispatch => {
 export const getOneBeer = (id) => async dispatch => {
   const response = await fetch(`/api/beers/${id}`);
   if(response.ok){
-    const beerData = await response.json();
+    const beer = await response.json();
     // beerData.beer is the beer, beerData.reviews are an array of all reviews
-    dispatch(addBeer(beerData));
-    return beerData;
+    dispatch(addBeer(beer));
+    return beer;
   }
 };
 
 export const addOneBeer = (data) => async dispatch => {
-  const response = await fetch(`/api/beers`, {
+  const response = await csrfFetch(`/api/beers`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const beerReducer = (state = initialState, action) => {
         }
       };
     }
-    case REMOVE_BEER:{
+    case REMOVE_BEER:
       return {
         ...state,
         [action.beerId]: {
@@ -148,11 +148,9 @@ const beerReducer = (state = initialState, action) => {
             (beer) => beer.id !== action.beerId
           ),
         },
-      };
     };
-    default:{
+    default:
       return state;
-    }
   };
 };
 

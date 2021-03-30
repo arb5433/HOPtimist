@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 
-import {getBeers, getStyles} from '../../store/beers';
+import {getBeers} from '../../store/beers';
 
 import BeerCard from '../BeerCard/index';
 
@@ -12,7 +12,6 @@ const BeerDisplayPage = () => {
 
   useEffect(() => {
     dispatch(getBeers());
-    dispatch(getStyles());
   },[dispatch])
 
   

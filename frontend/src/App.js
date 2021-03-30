@@ -5,7 +5,8 @@ import SignupFormPage from './components/SignupFormPage';
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import BeerDisplayPage from './components/BeerDisplayPage';
-import BeerReviewPage from './components/BeerReviewPage'
+import BeerReviewPage from './components/BeerReviewPage';
+import AddBeerForm from './components/AddBeerForm';
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/beers'>
+            <AddBeerForm/>
           </Route>
         </Switch>
       )}

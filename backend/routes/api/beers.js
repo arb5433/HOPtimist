@@ -5,7 +5,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { Beer, Review, BeerStyle, Brewery, User } = require('../../db/models');
 
-
 const router = express.Router();
 
 const validationBeer = [
@@ -14,7 +13,7 @@ const validationBeer = [
 
 const validationReviews = [
   // set up validations
-]
+];
 
 // GET list of all of the reviews for a given beer
 router.get('/reviews/:id', asyncHandler(async(req, res) => {
