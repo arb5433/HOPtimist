@@ -18,28 +18,33 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <BeerDisplayPage/>
-          </Route>
-          <Route exact path='/beers/:id'>
-            <BeerReviewPage/>
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path='/beers'>
-            <AddBeerForm/>
-          </Route>
-          <Route path ='/beers/:id/reviews'>
-            <AddReviewForm/>
-          </Route>
-        </Switch>
-      )}
-    </>
+    <div className='app-container'>
+      <div className='nav'>
+        <Navigation isLoaded={isLoaded}/>
+      </div>
+      <div className='main-content'>
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <BeerDisplayPage/>
+            </Route>
+            <Route exact path='/beers/:id'>
+              <BeerReviewPage/>
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path='/beers'>
+              <AddBeerForm/>
+            </Route>
+            <Route path ='/beers/:id/reviews'>
+              <AddReviewForm/>
+            </Route>
+          </Switch>
+        )}
+      </div>
+      <div className='footer'>Footer</div>
+    </div>
   );
 }
 

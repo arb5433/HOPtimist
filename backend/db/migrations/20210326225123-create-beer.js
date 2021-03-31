@@ -32,6 +32,12 @@ module.exports = {
       description:{
         type: Sequelize.TEXT
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'Users'},
+        defaultValue: 1
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

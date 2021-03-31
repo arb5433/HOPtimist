@@ -92,7 +92,7 @@ export const updateBeer = (data) => async dispatch => {
 };
 
 export const deleteBeer = (id) => async dispatch => {
-  const response = await fetch(`/api/beers/${id}`, {
+  const response = await csrfFetch(`/api/beers/${id}`, {
     method: 'delete',
   });
 

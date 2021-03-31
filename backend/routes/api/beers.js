@@ -48,8 +48,8 @@ router.get('/:id', asyncHandler(async(req, res) => {
 // X
 // POST add a new beer
 router.post('/', asyncHandler(async (req, res) => {
-  const {name, breweryId, abv, ibu, styleId, description} = req.body;
-  const beer = await Beer.create({name, breweryId, abv, ibu, styleId, description});
+  const {name, breweryId, abv, ibu, styleId, description, userId} = req.body;
+  const beer = await Beer.create({name, breweryId, abv, ibu, styleId, description, userId});
   return res.json({beer});
 }),
 );
@@ -72,7 +72,7 @@ router.put('/:id', asyncHandler(async(req, res) => {
 // X
 // DELETE remove a beer that you have added
 router.delete('/:id', asyncHandler(async(req, res) => {
-  const {id} = req.params();
+  const {id} = req.params;
   const beer = await Beer.findByPk(id);
   const reviews = await Review.findAll({where:{beerId: id}});
   reviews.forEach(async review => {

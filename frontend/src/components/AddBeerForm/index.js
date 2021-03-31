@@ -29,6 +29,10 @@ const AddBeerForm = () => {
     return state.beer.styles;
   });
 
+  const user = useSelector(state => {
+    return state.session.user;
+  });
+
   const onSubmit = event => {
     event.preventDefault();
     const data = {
@@ -37,7 +41,8 @@ const AddBeerForm = () => {
       abv,
       ibu,
       styleId: style,
-      description
+      description,
+      userId: user.id
     }
     dispatch(addOneBeer(data));
     history.push('/');

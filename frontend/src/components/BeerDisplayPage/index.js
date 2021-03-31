@@ -23,12 +23,9 @@ const BeerDisplayPage = () => {
     <div>
       <p>This is the BeerDisplayPage</p>
       <h2>All the beers</h2>
-      {beers && (
         <div>
-          {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>
-          )}
+          {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
         </div>
-      )}
       <div>
           <NavLink to='/beers'>Add a new beer</NavLink>
       </div>

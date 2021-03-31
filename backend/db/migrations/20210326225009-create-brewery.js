@@ -22,6 +22,12 @@ module.exports = {
         allowNull: false,
         references: {model: 'BreweryTypes'}
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'Users'},
+        defaultValue: 1
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
