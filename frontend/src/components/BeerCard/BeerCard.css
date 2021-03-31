@@ -1,6 +1,6 @@
 .beer-card-wrapper{
   width: 100%;
-  height: 200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,6 +9,10 @@
   background: radial-gradient(darkgreen, black);
   margin-bottom: 5px;
   box-sizing: border-box;
+}
+
+.outer-beer-card{
+  height: 200px;
 }
 
 .beer-card-link{
@@ -31,4 +35,9 @@
 
 .beer-card-specs {
   color: seagreen
+}
+
+.beer-card-description{
+  overflow-y: scroll;
+  max-height: 90px;
 }

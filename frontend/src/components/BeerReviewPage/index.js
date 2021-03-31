@@ -5,6 +5,9 @@ import {useParams, NavLink} from 'react-router-dom';
 import {loadReviews} from '../../store/reviews';
 
 import ReviewBlock from './ReviewBlock';
+import BeerCard from '../BeerCard';
+
+import './BeerReviewPage.css'
 
 const BeerReviewPage = () => {
   const dispatch = useDispatch();
@@ -39,24 +42,22 @@ const BeerReviewPage = () => {
   const beer = beers[id];
 
   return (
-    <div>
+    <div className='review-page-wrapper'>
       <div>
         {beer && (
           <div>
-            <h1>{beer.name}</h1>
-            <p>{beer.BeerStyle.style}</p>
-            <p>{beer.Brewery.name}</p>
-            <p>Overall Rating: {totalRating} Stars</p>
+            <BeerCard beer={beer}/>
+            <p className='overall-rating'>Overall Rating: &#127867;{totalRating} &#127867;</p>
           </div>
         )}
       </div>
       {reviews && (
-        <div>
+        <div className='reviews-wrapper'>
           {reviews.map(review => <ReviewBlock key={review.id} review={review}/>)}
         </div>
       )}
-      <div>
-        <NavLink to={`/beers/${beer.id}/reviews`}>Add a new review</NavLink>
+      <div className='add-review-btn-wrapper'>
+        <NavLink className='add-review-btn' to={`/beers/${beer.id}/reviews`}>Add a new review</NavLink>
       </div>
     </div>
   )

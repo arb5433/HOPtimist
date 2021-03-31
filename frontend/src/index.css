@@ -24,7 +24,7 @@
     
     .main-content{
       grid-row: 2;
-      background: linear-gradient(black,darkgreen);
+      background: linear-gradient(black,#086623);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -34,7 +34,7 @@
     
     .footer{
       grid-row: 3;
-      background-color: darkgreen;
+      background-color: #086623;
       border-top: 5px solid black ;
       display: flex;
       align-items: center;

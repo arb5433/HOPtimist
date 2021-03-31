@@ -19,7 +19,7 @@ const BeerCard = ({beer}) => {
     setThere(false);
   }
   return (
-    <div className='beer-card-wrapper'>
+    <div className='beer-card-wrapper outer-beer-card'>
       {there && (
       <div className='beer-card-wrapper'>
           <NavLink className='beer-card-wrapper beer-card-link' to={`/beers/${beer.id}`}>
