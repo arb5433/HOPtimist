@@ -21,7 +21,11 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} id>
+    <form className='modal-form' onSubmit={onSubmit} id>
+      <div className='hoptimist-text-wrapper'>
+        <h2 className='hoptimist-text'>HOPtimist</h2>
+        <p className='warning'>Please Drink Responsibly</p>
+      </div>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>

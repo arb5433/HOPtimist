@@ -6,6 +6,8 @@ import {getBeers} from '../../store/beers';
 
 import BeerCard from '../BeerCard/index';
 
+import './BeerDisplay.css'
+
 
 const BeerDisplayPage = () => {
   const dispatch = useDispatch()
@@ -20,14 +22,16 @@ const BeerDisplayPage = () => {
   });
 
   return (
-    <div>
-      <p>This is the BeerDisplayPage</p>
-      <h2>All the beers</h2>
-        <div>
-          {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
-        </div>
-      <div>
-          <NavLink to='/beers'>Add a new beer</NavLink>
+    <div className='beer-display-page'>
+      <img className='banner' src='https://user-images.githubusercontent.com/74081636/113198408-dfc2b900-9233-11eb-9e62-da36b528a433.png'/>
+      <div className='beer-display-head'>
+        <h2 className='browse'>Browse for Beers: </h2>                     
+      </div>
+      <div className='beer-cards-display'>
+        {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
+      </div>
+      <div className='add-beer-btn-wrapper'>
+          <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink>
       </div>
     </div>
   );

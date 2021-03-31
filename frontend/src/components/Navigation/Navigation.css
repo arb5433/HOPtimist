@@ -51,11 +51,13 @@
   background-color: green;
 }
 
-.hoptimist-text{
+.hoptimist-text-nav{
   margin: 0;
   color: black;
   text-shadow: 1px 1px 0 darkgreen, 2px 2px 0 #000000;
   font-family: 'Aclonica', sans-serif;
+  letter-spacing: 4px;
+  font-size: 35px;
 }
 
 

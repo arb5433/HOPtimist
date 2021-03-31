@@ -43,7 +43,10 @@ function App() {
           </Switch>
         )}
       </div>
-      <div className='footer'>Footer</div>
+      <div className='footer'>
+          <div className='dev-name'>Created By: Adam Bailey</div>
+          <a className='dev-name' href='https://github.com/arb5433'>Github Profile</a>
+      </div>
     </div>
   );
 }
