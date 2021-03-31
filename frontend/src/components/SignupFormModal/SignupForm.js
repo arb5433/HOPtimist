@@ -30,27 +30,31 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='modal-form' onSubmit={onSubmit}>
+      <div className='hoptimist-text-wrapper'>
+        <h2 className='hoptimist-text'>HOPtimist</h2>
+        <p className='warning'>Please Drink Responsibly</p>
+      </div>
       <ul className='error-display'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label className='modal-label'>
         Email
+        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required/>
       </label>
-      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-      <label>
+      <label className='modal-label'>
         Username
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
       </label>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
-      <label>
+      <label className='modal-label'>
         Password
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
       </label>
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-      <label>
+      <label className='modal-label'>
         Confirm Password
+        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
       </label>
-      <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
-      <button type="submit">Sign Up</button>
+      <button className='signup-btn' type="submit">Sign Up</button>
     </form>
   );
 }
