@@ -17,10 +17,17 @@ const BeerDisplayPage = () => {
     dispatch(getBeers());
   },[dispatch])
 
+  const sortList = (list) => {
+    return list.sort((beerA, beerB) => {
+      return beerB.id - beerA.id;
+    });
+  };
   
-  const beers = useSelector(state => {
-    return state.beer.beers;
+  const unOrderedBeers = useSelector(state => {
+    return state.beer.beersList.map(beerId => state.beer[beerId]);
   });
+
+  const beers = sortList(unOrderedBeers);
 
   const user = useSelector(state => {
     return state.session.user;
@@ -33,17 +40,19 @@ const BeerDisplayPage = () => {
 
   return (
     <div className='beer-display-page'>
-      <img className='banner' src='https://user-images.githubusercontent.com/74081636/113198408-dfc2b900-9233-11eb-9e62-da36b528a433.png'/>
-      <div className='beer-display-head'>
-        <h2 className='browse'>Browse for Beers: </h2>                     
-      </div>
-      <div className='beer-cards-display'>
-        {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
-      </div>
-      <div className='add-beer-btn-wrapper'>
-          {/* <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink> */}
-          <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
-      </div>
+      {beers && <div className='beer-display-page'>
+        <img className='banner' src='https://user-images.githubusercontent.com/74081636/113198408-dfc2b900-9233-11eb-9e62-da36b528a433.png'/>
+        <div className='beer-display-head'>
+          <h2 className='browse'>Browse for Beers: </h2>                     
+        </div>
+        <div className='beer-cards-display'>
+          {beers && beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
+        </div>
+        <div className='add-beer-btn-wrapper'>
+            {/* <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink> */}
+            <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
+        </div>
+      </div>}
     </div>
   );
 };

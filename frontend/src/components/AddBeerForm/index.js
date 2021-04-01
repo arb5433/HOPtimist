@@ -14,7 +14,7 @@ const AddBeerForm = () => {
   const [name, setName] = useState('');
   const [brew, setBrew] = useState('');
   const [abv, setAbv] = useState(0);
-  const [ibu, setIbu] = useState('');
+  const [ibu, setIbu] = useState(0);
   const [style, setStyle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -47,7 +47,6 @@ const AddBeerForm = () => {
       userId: user.id
     }
     await dispatch(addOneBeer(data));
-    await dispatch(getBeers());
     history.push('/');
   }
 

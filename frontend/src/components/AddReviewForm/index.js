@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 
 import {getBeers} from '../../store/beers';
 import {newReview} from '../../store/reviews';
+import BeerCard from '../BeerCard';
 
 const AddReviewForm = () => {
   const dispatch = useDispatch();
@@ -19,15 +20,14 @@ const AddReviewForm = () => {
   },[dispatch])
 
 
-  const beers = useSelector(state => {
-    return state.beer.beers;
+  const beer = useSelector(state => {
+    return state.beer[id];
   });
 
   const user = useSelector(state => {
     return state.session.user;
   });
 
-  const beer = beers[id-1];
 
   const onSubmit = event => {
     event.preventDefault();
@@ -44,9 +44,7 @@ const AddReviewForm = () => {
   return (
     <div>
       <div>
-        {beer && <h1>{beer.name}</h1>}
-        {beer && <p>{beer.Brewery.name}</p>}
-        {beer && <p>{beer.BeerStyle.style}</p>}
+        <BeerCard beer={beer}/>
       </div>
       <form onSubmit={onSubmit}>
         <div>

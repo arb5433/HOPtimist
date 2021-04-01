@@ -26,9 +26,9 @@ const addBeer = beer => ({
   beer
 });
 
-const removeBeer = beer => ({
+const removeBeer = id => ({
   type: REMOVE_BEER,
-  beer
+  id
 })
 
 // thunk action creators
@@ -95,23 +95,34 @@ export const deleteBeer = (id) => async dispatch => {
   const response = await csrfFetch(`/api/beers/${id}`, {
     method: 'delete',
   });
-
   if (response.ok){
-    const beer = response.json();
-    dispatch(removeBeer(beer));
-    return beer;
+
+    const id = response.json();
+    dispatch(removeBeer(id));
+    return id;
   }
 }
 
 // reducer
-const initialState = {beers:[],styles:[]}
+const initialState = {beersList:[],styles:[]}
+
+const sortList = (list) => {
+  return list.sort((beerA, beerB) => {
+    return beerA.id - beerB.id;
+  }).map((beer) => beer.id);
+};
 
 const beerReducer = (state = initialState, action) => {
   switch(action.type){
     case LOAD:{
+      const allBeers = {};
+      action.beers.forEach(beer => {
+        allBeers[beer.id] = beer;
+      });
       return {
         ...state,
-        beers: action.beers,
+        ...allBeers,
+        beersList: sortList(action.beers),
       };
     }
     case LOAD_STYLES:{
@@ -126,9 +137,9 @@ const beerReducer = (state = initialState, action) => {
           ...state,
           [action.beer.id]: action.beer
         };
-        const beerList = newState.beers.map(id => newState[id]);
+        const beerList = newState.beersList.map(id => newState[id]);
         beerList.push(action.beer);
-        newState.beers = beerList;
+        newState.beersList = sortList(beerList)
         return newState;
       }
       return {
@@ -139,16 +150,14 @@ const beerReducer = (state = initialState, action) => {
         }
       };
     }
-    case REMOVE_BEER:
-      return {
-        ...state,
-        [action.beerId]: {
-          ...state[action.beerId],
-          beers: state[action.beerId].filter(
-            (beer) => beer.id !== action.beerId
-          ),
-        },
-    };
+    case REMOVE_BEER:{
+      const newState = {...state};
+      delete newState[action.id];
+      const beerList = newState.beersList.map(id => newState[id]);
+      const newBeerList = beerList.filter(beer => beer.id !== action.id);
+      newState.beersList = sortList(newBeerList);
+      return newState;
+    }
     default:
       return state;
   };

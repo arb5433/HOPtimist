@@ -22,9 +22,9 @@ const addReview = (review) => ({
   review
 });
 
-const deleteReview = (review) => ({
+const deleteReview = (id) => ({
   type: DELETE_REVIEW,
-  review
+  id
 });
 
 // thunk creators
@@ -37,6 +37,8 @@ export const newReview = (review) => async dispatch => {
     },
     body: JSON.stringify(review),
   });
+
+  console.log(response)
 
   if(response.ok){
     const newReview = await response.json();
@@ -61,15 +63,15 @@ export const updateReview = (data) => async dispatch => {
   }
 };
 
-export const destroyReview = (data) => async dispatch => {
-  const response = await fetch(`/api/beers/${data.beerId}/reviews/${data.id}`,{
+export const destroyReview = (review) => async dispatch => {
+  const response = await csrfFetch(`/api/beers/${review.beerId}/reviews/${review.id}`,{
     method: 'delete'
   });
   
   if(response.ok){
-    const review = response.json();
-    dispatch(deleteReview(review));
-    return review;
+    const id = await response.json();
+    dispatch(deleteReview(id));
+    return id;
   }
 };
 
@@ -84,14 +86,25 @@ export const loadReviews = (id) => async dispatch => {
 
 // reducer
 
-const initialState = {reviews:[]}
+const sortList = (list) => {
+  return list.sort((reviewA, reviewB) => {
+    return reviewA.id - reviewB.id;
+  }).map((review) => review.id);
+};
+
+const initialState = {reviewsList:[]}
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type){
     case LOAD:{
+      const allReviews = {};
+      action.reviews.forEach(review => {
+        allReviews[review.id] = review;
+      });
       return {
         ...state,
-        reviews: action.reviews,
+        ...allReviews,
+        reviewsList: sortList(action.reviews),
       };
     }
     case ADD_REVIEW:{
@@ -100,9 +113,9 @@ const reviewReducer = (state = initialState, action) => {
           ...state,
           [action.review.id]: action.review
         };
-        const reviewList = newState.reviews.map(id => newState[id]);
+        const reviewList = newState.reviewsList.map(id => newState[id]);
         reviewList.push(action.review);
-        newState.reviews = reviewList;
+        newState.reviewsList = sortList(reviewList);
         return newState;
       }
       return {
@@ -114,15 +127,12 @@ const reviewReducer = (state = initialState, action) => {
       };
     }
     case DELETE_REVIEW:{
-      return {
-        ...state,
-        [action.reviewId]: {
-          ...state[action.reviewId],
-          reviews: state[action.reviewId].filter(
-            (review) => review.id !== action.reviewId
-          ),
-        },
-      };
+      const newState = {...state};
+      const reviewList = newState.reviewsList.filter(id => id.toString() !== action.id.toString());
+      const newReviewList = reviewList.map(id => newState[id])
+      newState.reviewsList = sortList(newReviewList);
+      delete newState[action.id];
+      return newState;
     }
     default: {
       return state;

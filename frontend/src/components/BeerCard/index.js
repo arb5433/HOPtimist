@@ -1,39 +1,38 @@
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState} from 'react';
-import {deleteBeer, getBeers} from '../../store/beers'
+import {deleteBeer} from '../../store/beers'
 
 import './BeerCard.css'
 
 const BeerCard = ({beer}) => {
   const dispatch = useDispatch();
-  const [there, setThere] = useState(true);
 
   const user = useSelector(state => {
     return state.session.user;
   });
 
-
-  const deleteClick = event => {
-    dispatch(deleteBeer(beer.id));
-    dispatch(getBeers());
-    setThere(false);
+  const deleteClick = async (event) => {
+    await dispatch(deleteBeer(beer.id));
   }
 
-  let created = beer.createdAt;
-  created = created.split('');
-  created = created.slice(0,10);
-  created = created.join('');
-  created = created.split('-');
-  const year = created.shift();
-  created.push(year);
-  created = created.join('/')
+  let created;
+
+  if (beer){
+    created = beer.createdAt;
+    created = created.split('');
+    created = created.slice(0,10);
+    created = created.join('');
+    created = created.split('-');
+    const year = created.shift();
+    created.push(year);
+    created = created.join('/')
+  }
   
 
 
   return (
     <div className='beer-card-wrapper outer-beer-card'>
-      {there && (
+      {beer && (
       <div className='beer-card-wrapper'>
           <NavLink className='beer-card-wrapper beer-card-link' to={`/beers/${beer.id}`}>
             <div className='bch-wrapper'>
@@ -42,8 +41,8 @@ const BeerCard = ({beer}) => {
                 <div className='beer-card-name-style-brew'>
                   <h2 className='beer-card-name'>{beer.name}</h2>
                   <div className='brew-style-wrapper'>
-                    <p className='brew-style'>Brewery: {beer.Brewery.name}</p>
-                    <p className='brew-style'>Style: {beer.BeerStyle.style}</p>
+                    {beer.Brewery && <p className='brew-style'>Brewery: {beer.Brewery.name}</p>}
+                    {beer.BeerStyle && <p className='brew-style'>Style: {beer.BeerStyle.style}</p>}
                   </div>
                 </div>
               </div>
@@ -60,9 +59,9 @@ const BeerCard = ({beer}) => {
               <div className='middle-div'>
                 Ratings PlaceHolder
               </div>
-              <div className='right-div'>
+              {created && <div className='right-div'>
                 Added: {created}
-              </div>
+              </div>}
             </div>
           </NavLink>
           <div>

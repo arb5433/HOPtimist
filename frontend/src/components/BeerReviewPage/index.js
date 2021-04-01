@@ -8,21 +8,32 @@ import ReviewBlock from './ReviewBlock';
 import BeerCard from '../BeerCard';
 
 import './BeerReviewPage.css'
-import { getBeers } from '../../store/beers';
 
 const BeerReviewPage = () => {
   const dispatch = useDispatch();
   let {id} = useParams();
-  id -= 1;
 
   const [totalRating, setTotalRating] = useState(0);
   
-  const reviews = useSelector(state => {
-    return state.review.reviews;
+
+  const sortList = (list) => {
+    return list.sort((reviewA, reviewB) => {
+      return reviewB.id - reviewA.id;
+    });
+  };
+  
+  const unOrderedReviews = useSelector(state => {
+    return state.review.reviewsList.map(reviewId => state.review[reviewId]);
   });
 
-  const beers = useSelector(state => {
-    return state.beer.beers;
+  const reviews = sortList(unOrderedReviews);
+
+  const beer = useSelector(state => {
+    return state.beer[id];
+  });
+
+  const user = useSelector(state => {
+    return state.session.user;
   });
 
   useEffect(() => {
@@ -33,18 +44,14 @@ const BeerReviewPage = () => {
       count++;
     });
     const newRating = total/count;
-    setTotalRating(newRating);
+    const rounded = Math.round(newRating * 10) / 10
+    setTotalRating(rounded);
   }, [reviews])
 
   useEffect(() => {
     dispatch(loadReviews(id))
   },[dispatch,id]);
 
-  useEffect(() => {
-    dispatch(getBeers())
-  },[dispatch])
-
-  const beer = beers[id];
 
   return (
     <div className='review-page-wrapper'>
