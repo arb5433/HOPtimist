@@ -1,6 +1,6 @@
 .overall-rating{
   margin: 0;
-  margin-left: 15px;
+  padding-left: 15px;
   color: white;
   background: radial-gradient(darkgreen, black);
 }
@@ -10,10 +10,11 @@
 }
 
 .review-wrapper{
-  color: white;
+  margin: 0;
+  background-color: white;
+  padding: 10px;
   box-sizing: border-box;
   padding: 15px;
-  border-bottom: 2px dashed white;
   margin-top: 5px;
 }
 
@@ -56,4 +57,13 @@
   justify-content: flex-end;
   padding: 20px;
   padding-right: 0;
+}
+
+.beer-card-header{
+  display: flex;
+  margin: 10px;
+}
+
+.beer-card-name-style-brew{
+  margin-left: 20px
 }

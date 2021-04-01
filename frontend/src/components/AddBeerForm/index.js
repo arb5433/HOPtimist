@@ -50,7 +50,7 @@ const AddBeerForm = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form className='beer-form' onSubmit={onSubmit}>
         <div>
           <label>Beer Name: </label>
           <input type='text' name='name' value={name} onChange={(event) => setName(event.target.value)}/>
