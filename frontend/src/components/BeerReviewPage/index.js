@@ -8,6 +8,7 @@ import ReviewBlock from './ReviewBlock';
 import BeerCard from '../BeerCard';
 
 import './BeerReviewPage.css'
+import { getBeers } from '../../store/beers';
 
 const BeerReviewPage = () => {
   const dispatch = useDispatch();
@@ -39,13 +40,17 @@ const BeerReviewPage = () => {
     dispatch(loadReviews(id))
   },[dispatch,id]);
 
+  useEffect(() => {
+    dispatch(getBeers())
+  },[dispatch])
+
   const beer = beers[id];
 
   return (
     <div className='review-page-wrapper'>
       <div>
         {beer && (
-          <div>
+          <div className='beer-card-wrapper-review'>
             <BeerCard beer={beer}/>
             <p className='overall-rating'>Overall Rating: &#127867;{totalRating} &#127867;</p>
           </div>
@@ -53,7 +58,7 @@ const BeerReviewPage = () => {
       </div>
       {reviews && (
         <div className='reviews-wrapper'>
-          {reviews.map(review => <ReviewBlock key={review.id} review={review}/>)}
+          {reviews.map(review => <ReviewBlock key={review.id} review={review} beer={beer}/>)}
         </div>
       )}
       <div className='add-review-btn-wrapper'>

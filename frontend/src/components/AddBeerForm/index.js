@@ -3,7 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 import {getBrews} from '../../store/breweries';
-import {getStyles, addOneBeer} from '../../store/beers';
+import {getStyles, addOneBeer, getBeers} from '../../store/beers';
+
+import './AddBeerForm.css'
 
 const AddBeerForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ const AddBeerForm = () => {
     return state.session.user;
   });
 
-  const onSubmit = event => {
+  const onSubmit =  async event => {
     event.preventDefault();
     const data = {
       name,
@@ -44,52 +46,61 @@ const AddBeerForm = () => {
       description,
       userId: user.id
     }
-    dispatch(addOneBeer(data));
+    await dispatch(addOneBeer(data));
+    await dispatch(getBeers());
     history.push('/');
   }
 
   return (
-    <div>
-      <form className='beer-form' onSubmit={onSubmit}>
-        <div>
-          <label>Beer Name: </label>
-          <input type='text' name='name' value={name} onChange={(event) => setName(event.target.value)}/>
+    <div className='beer-form-wrapper'>
+      <form className='add-beer-form' onSubmit={onSubmit}>
+        <div className='beer-form-header'>
+          <div className='title'>Add a New Beer</div>
+          <p className='instructions'>Please read the following guidelines.</p>
+          <ul className='guidelines'>
+            <li>Don't include the brewery in the beer name.</li>
+            <li>If the brewery is not listed please add it to our list of breweries.</li>
+            <li>Only include the name as featured on the label.</li>
+            <li>Please do not add any unsupported drinks (drinks that are not beers).</li>
+            <li>Do not create a beer that are blends of 2 or more beers. This goes for any beers that are blended at a Bar/Brewery after kegging.</li>
+            <li>Any failure to follow these guidelines will result in your profile being withheld beer access to the beer creation form.</li>
+          </ul>
         </div>
-        <div>
-          <label>Select a Brewery: </label>
-          <select value={brew} onChange={(event => setBrew(event.target.value))}>
-            <option disabled value=''>Breweries</option>
-            {breweries.map(brewery => {
-              return(
-                <option key={brewery.id} value={brewery.id}>{brewery.name}</option>
-              )
-            })}
-          </select>
+        <div className='beer-form-inputs'>
+          <label className='beer-form-input'>*Beer Name:
+            <input type='text' name='name' value={name} onChange={(event) => setName(event.target.value)}/>
+          </label>
+          <label className='beer-form-input'>*Select a Brewery: 
+            <select value={brew} onChange={(event => setBrew(event.target.value))}>
+              <option disabled value=''>Breweries</option>
+              {breweries.map(brewery => {
+                return(
+                  <option key={brewery.id} value={brewery.id}>{brewery.name}</option>
+                )
+              })}
+            </select>
+          </label>
+          <label className='beer-form-input'>ABV: 
+            <input type='number' value={abv} onChange={event => setAbv(event.target.value)}/>
+          </label>
+          <label className='beer-form-input'>IBU: 
+            <input type='number' value={ibu} onChange={event => setIbu(event.target.value)}/>
+          </label>
+          <label className='beer-form-input'>*Select a Beer Style: 
+            <select value={style} onChange={(event => setStyle(event.target.value))}>
+              <option disabled value=''>Beer Styles</option>
+              {styles.map(style => {
+                return(
+                  <option key={style.id} value={style.id}>{style.style}</option>
+                )
+              })}
+            </select>
+          </label>
+          <label className='beer-form-input'>Description: 
+            <textarea className='text-area' value={description} onChange={event => setDescription(event.target.value)}/>
+          </label>
+          <button type='submit'>Add Beer</button>
         </div>
-        <div>
-          <label>ABV: </label>
-          <input type='number' value={abv} onChange={event => setAbv(event.target.value)}/>
-        </div>
-        <div>
-          <label>IBU: </label>
-          <input type='number' value={ibu} onChange={event => setIbu(event.target.value)}/>
-        </div>
-        <div>
-          <label>Select a Beer Style: </label>
-          <select value={style} onChange={(event => setStyle(event.target.value))}>
-            <option disabled value=''>Beer Styles</option>
-            {styles.map(style => {
-              return(
-                <option key={style.id} value={style.id}>{style.style}</option>
-              )
-            })}
-          </select>
-        </div>
-        <div>
-          <label>Description: </label>
-          <textarea value={description} onChange={event => setDescription(event.target.value)}/>
-        </div>
-        <button type='submit'>Add Beer</button>
       </form>
     </div>
   )

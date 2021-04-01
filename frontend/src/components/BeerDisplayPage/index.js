@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import {getBeers} from '../../store/beers';
 
@@ -10,7 +10,8 @@ import './BeerDisplay.css'
 
 
 const BeerDisplayPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getBeers());
@@ -20,6 +21,15 @@ const BeerDisplayPage = () => {
   const beers = useSelector(state => {
     return state.beer.beers;
   });
+
+  const user = useSelector(state => {
+    return state.session.user;
+  });
+
+  const beerClickHandler = () => {
+    if(user) history.push('/beers');
+    else alert ('Please login or create an account to add a new beer.')
+  }
 
   return (
     <div className='beer-display-page'>
@@ -31,7 +41,8 @@ const BeerDisplayPage = () => {
         {beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
       </div>
       <div className='add-beer-btn-wrapper'>
-          <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink>
+          {/* <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink> */}
+          <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
       </div>
     </div>
   );

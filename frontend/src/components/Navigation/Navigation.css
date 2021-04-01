@@ -4,12 +4,14 @@
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .navbar-container{
   margin: 0;
   height: 50px;
   padding-left: 20px;
+  position: relative;
 }
 
 .logo{

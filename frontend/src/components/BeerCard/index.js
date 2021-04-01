@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {useState} from 'react';
-import {deleteBeer} from '../../store/beers'
+import {deleteBeer, getBeers} from '../../store/beers'
 
 import './BeerCard.css'
 
@@ -16,6 +16,7 @@ const BeerCard = ({beer}) => {
 
   const deleteClick = event => {
     dispatch(deleteBeer(beer.id));
+    dispatch(getBeers());
     setThere(false);
   }
 
