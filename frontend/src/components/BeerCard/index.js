@@ -1,15 +1,39 @@
 import {NavLink} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteBeer, getBeers} from '../../store/beers'
+import {loadReviews} from '../../store/reviews';
 
 import './BeerCard.css'
 
 const BeerCard = ({beer}) => {
   const dispatch = useDispatch();
 
+  const [totalRating, setTotalRating] = useState(0);
+
   const user = useSelector(state => {
     return state.session.user;
   });
+
+  const reviews = useSelector(state => {
+    return state.review.reviewsList.map(reviewId => state.review[reviewId]);
+  });
+
+  useEffect(() => {
+    let total = 0;
+    let count = 0;
+    reviews.forEach(review => {
+      total += review.rating;
+      count++;
+    });
+    const newRating = total > 1 ? total/count : 0;
+    const rounded = Math.round(newRating * 10) / 10
+    setTotalRating(rounded);
+  }, [reviews])
+
+  useEffect(() => {
+    dispatch(loadReviews(beer.id))
+  },[dispatch,beer.id]);
 
   const deleteClick = async (event) => {
     await dispatch(deleteBeer(beer.id));
@@ -57,12 +81,13 @@ let created;
                 IBU: {beer.ibu ? beer.ibu : 'N/A'}
               </div>
               <div className='middle-div'>
-                Ratings PlaceHolder
+                Overall Rating: {totalRating ? totalRating : 'N/A'}
               </div>
               {created && <div className='right-div'>
                 Added: {created}
               </div>}
             </div>
+          </NavLink>
             {user && (
               <div className='user-edit-btns'>
                 {user.id === beer.userId && (
@@ -73,7 +98,6 @@ let created;
                 )}
               </div>
             )}
-          </NavLink>
       </div>
       )}
     </div>

@@ -32,10 +32,6 @@ const BeerReviewPage = () => {
     return state.beer[id];
   });
 
-  const user = useSelector(state => {
-    return state.session.user;
-  });
-
   useEffect(() => {
     let total = 0;
     let count = 0;
@@ -43,7 +39,7 @@ const BeerReviewPage = () => {
       total += review.rating;
       count++;
     });
-    const newRating = total/count;
+    const newRating = total > 1 ? total/count : 0;
     const rounded = Math.round(newRating * 10) / 10
     setTotalRating(rounded);
   }, [reviews])
@@ -59,7 +55,7 @@ const BeerReviewPage = () => {
         {beer && (
           <div className='beer-card-wrapper-review'>
             <BeerCard beer={beer}/>
-            <p className='overall-rating'>Overall Rating: &#127867;{totalRating} &#127867;</p>
+            <p className='overall-rating'>Overall Rating: &#127867;{totalRating ? totalRating : 'N/A'} &#127867;</p>
           </div>
         )}
       </div>
@@ -68,9 +64,11 @@ const BeerReviewPage = () => {
           {reviews.map(review => <ReviewBlock key={review.id} review={review} beer={beer}/>)}
         </div>
       )}
-      <div className='add-review-btn-wrapper'>
-        <NavLink className='add-review-btn' to={`/beers/${beer.id}/reviews`}>Add a new review</NavLink>
-      </div>
+      {beer && (
+        <div className='add-review-btn-wrapper'>
+          <NavLink className='add-review-btn' to={`/beers/${beer.id}/reviews`}>Add a new review</NavLink>
+        </div>
+      )}
     </div>
   )
 }

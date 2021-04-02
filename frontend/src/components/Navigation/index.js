@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -8,11 +8,17 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
+
+  const profileClick = (event) => {
+    event.preventDefault();
+    history.push('/users/profile');
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -20,6 +26,9 @@ function Navigation({ isLoaded }){
       <>
         <h3 className='welcome-msg'>Welcome {sessionUser.username}!</h3>
         <button className='logout-btn' onClick={logout}>Log Out</button>
+        <button onClick={profileClick}>
+          <i class="fas fa-beer"></i>
+        </button>
       </>
     );
   } else {
