@@ -8,6 +8,7 @@ import BeerDisplayPage from './components/BeerDisplayPage';
 import BeerReviewPage from './components/BeerReviewPage';
 import AddBeerForm from './components/AddBeerForm';
 import AddReviewForm from './components/AddReviewForm';
+import EditBeerForm from './components/EditBeerForm';
 
 function App() {
   // restores the user to the store on a refresh
@@ -37,8 +38,11 @@ function App() {
             <Route exact path='/beers'>
               <AddBeerForm/>
             </Route>
-            <Route path ='/beers/:id/reviews'>
+            <Route  exact path ='/beers/:id/reviews'>
               <AddReviewForm/>
+            </Route>
+            <Route path='/beers/:id/edit'>
+              <EditBeerForm/>
             </Route>
           </Switch>
         )}

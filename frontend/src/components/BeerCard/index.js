@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteBeer} from '../../store/beers'
+import {deleteBeer, getBeers} from '../../store/beers'
 
 import './BeerCard.css'
 
@@ -13,9 +13,9 @@ const BeerCard = ({beer}) => {
 
   const deleteClick = async (event) => {
     await dispatch(deleteBeer(beer.id));
+    await dispatch(getBeers());
   }
-
-  let created;
+let created;
 
   if (beer){
     created = beer.createdAt;
@@ -70,7 +70,7 @@ const BeerCard = ({beer}) => {
                 {user.id === beer.userId && (
                   <div>
                     <button onClick={deleteClick}>Delete</button>
-                    <button>Edit</button>
+                    <NavLink to={`/beers/${beer.id}/edit`}>Edit</NavLink>
                   </div>
                 )}
               </div>

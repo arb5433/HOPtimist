@@ -152,10 +152,10 @@ const beerReducer = (state = initialState, action) => {
     }
     case REMOVE_BEER:{
       const newState = {...state};
-      delete newState[action.id];
       const beerList = newState.beersList.map(id => newState[id]);
       const newBeerList = beerList.filter(beer => beer.id !== action.id);
       newState.beersList = sortList(newBeerList);
+      delete newState[action.id];
       return newState;
     }
     default:
