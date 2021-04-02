@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [search, setSearch] = useState()
+  const [search, setSearch] = useState();
 
   const logout = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('***************SEARCH *************',search);
-    dispatch(searchBeers(search));
+    dispatch(searchBeers({query: search}));
     history.push('/beers/search');
   }
 

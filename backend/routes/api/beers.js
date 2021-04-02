@@ -65,8 +65,7 @@ router.post('/', asyncHandler(async (req, res) => {
 //POST search for beers
 router.post('/search', asyncHandler(async(req, res) => {
   const {query} = req.body;
-  console.log('****************** QUERY ***********************', query)
-  const beers = await Beers.findAll({
+  const beers = await Beer.findAll({
     where: {name: {[Op.substring] : `%${query}%`}},
     include: [BeerStyle, Brewery]
   });
@@ -75,10 +74,8 @@ router.post('/search', asyncHandler(async(req, res) => {
 
 // POST add a new review
 router.post('/:id', asyncHandler(async (req, res) => {
-  console.log('*******************In the backend')
   const {userId, beerId, review, rating, imageUrl} = req.body;
   const newReview = await Review.create({userId, beerId, review, rating, imageUrl});
-  console.log('*************** NEW REVIEW ******************',newReview);
   return res.json(newReview);
 }));
 

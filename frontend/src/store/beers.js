@@ -57,7 +57,6 @@ export const getStyles = () => async dispatch => {
 
 export const getOneBeer = (id) => async dispatch => {
   const response = await fetch(`/api/beers/${id}`);
-  console.log('Responce:',response)
   if(response.ok){
     const beer = await response.json();
     dispatch(addBeer(beer));
