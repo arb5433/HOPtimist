@@ -11,6 +11,7 @@ import AddReviewForm from './components/AddReviewForm';
 import EditBeerForm from './components/EditBeerForm';
 import EditReviewForm from './components/EditReviewForm';
 import UserProfile from './components/UserProfile';
+import BeerSearch from './components/BeerSearch';
 
 function App() {
   // restores the user to the store on a refresh
@@ -31,6 +32,9 @@ function App() {
             <Route exact path="/">
               <BeerDisplayPage/>
             </Route>
+            <Route exact path='/beers/search'>
+              <BeerSearch/>
+            </Route>
             <Route exact path='/beers/:id'>
               <BeerReviewPage/>
             </Route>
@@ -50,7 +54,7 @@ function App() {
               <EditReviewForm/>
             </Route>
             <Route path ='/users/profile'>
-                <UserProfile/>
+              <UserProfile/>
             </Route>
           </Switch>
         )}

@@ -2,6 +2,8 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 
 const { Beer, Review, BeerStyle, Brewery, User } = require('../../db/models');
@@ -60,6 +62,17 @@ router.post('/', asyncHandler(async (req, res) => {
 }),
 );
 
+//POST search for beers
+router.post('/search', asyncHandler(async(req, res) => {
+  const {query} = req.body;
+  console.log('****************** QUERY ***********************', query)
+  const beers = await Beers.findAll({
+    where: {name: {[Op.substring] : `%${query}%`}},
+    include: [BeerStyle, Brewery]
+  });
+  return res.json(beers);
+}));
+
 // POST add a new review
 router.post('/:id', asyncHandler(async (req, res) => {
   console.log('*******************In the backend')
@@ -107,5 +120,8 @@ router.delete('/:id/reviews/:rId', asyncHandler(async (req, res) => {
   await review.destroy();
   return res.json(rId);
 }));
+
+
+
 
 module.exports = router;

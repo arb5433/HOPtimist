@@ -82,8 +82,6 @@ export const addOneBeer = (data) => async dispatch => {
 };
 
 export const updateBeer = (data) => async dispatch => {
-  console.log('THIS IS DATA *********************************', data);
-
   const response = await csrfFetch(`/api/beers/${data.id}`, {
     method: 'put',
     headers: {
@@ -108,6 +106,21 @@ export const deleteBeer = (id) => async dispatch => {
     const id = response.json();
     dispatch(removeBeer(id));
     return id;
+  }
+};
+
+export const searchBeers = (query) => async dispatch => {
+  console.log('************************inside the thunk*************', query);
+  const response = await csrfFetch(`/api/beers/search`, {
+    method: 'post',
+    body: JSON.stringify(query) ,
+  });
+  console.log('*************** Response ******************', response);
+
+  if(response.ok){
+    const beers = await response.json();
+    dispatch(searchBeer(beers));
+    return beers;
   }
 }
 
@@ -165,6 +178,17 @@ const beerReducer = (state = initialState, action) => {
       newState.beersList = sortList(newBeerList);
       delete newState[action.id];
       return newState;
+    }
+    case SEARCH_BEER:{
+      const searchedBeers = {};
+      action.beers.forEach(beer => {
+        searchedBeers[beer.id] = beer;
+      });
+      return {
+        ...state,
+        ...searchedBeers,
+        beersList: sortList(action.beers),
+      };
     }
     default:
       return state;

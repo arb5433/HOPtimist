@@ -1,5 +1,7 @@
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState} from 'react';
+import {searchBeers} from '../../store/beers';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import * as sessionActions from '../../store/session';
@@ -9,6 +11,8 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [search, setSearch] = useState()
 
   const logout = (e) => {
     e.preventDefault();
@@ -20,14 +24,28 @@ function Navigation({ isLoaded }){
     history.push('/users/profile');
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('***************SEARCH *************',search);
+    dispatch(searchBeers(search));
+    history.push('/beers/search');
+  }
+
+  console.log('********* TEST ****************');
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        <h3 className='welcome-msg'>Welcome {sessionUser.username}!</h3>
+        <form onSubmit={handleSubmit}>
+          <input value={search} onChange={(event) => setSearch(event.target.value)}/>
+          <button type='submit'>
+            <i className='fa fa-search'></i>
+          </button>
+        </form>
         <button className='logout-btn' onClick={logout}>Log Out</button>
         <button onClick={profileClick}>
-          <i class="fas fa-beer"></i>
+          <i className="fas fa-beer"></i>
         </button>
       </>
     );
