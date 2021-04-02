@@ -98,3 +98,41 @@
   color: black;
   background-color: green;
 }
+
+.user-edit-btns{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.delete-btn,
+.edit-btn{
+  text-decoration: none;
+  font-size: .75em;
+  width: 55px;
+  height: 18px;
+  text-align: center;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  font-family: 'Aclonica', sans-serif;
+  box-sizing: border-box;
+  padding: 2px;
+  margin: 5px;
+  border: transparent;
+}
+
+
+.edit-btn{
+  box-sizing: border-box;
+  padding-top: 1px;
+}
+
+.delete-btn:hover,
+.edit-btn:hover{
+  color: black;
+  background-color: green;
+  border: 2px solid black;
+}

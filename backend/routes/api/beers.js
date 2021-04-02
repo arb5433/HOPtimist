@@ -72,9 +72,10 @@ router.post('/:id', asyncHandler(async (req, res) => {
 // X
 // PUT update a beer that you have already created
 router.put('/:id', asyncHandler(async(req, res) => {
-  const {name, breweryId, abv, ibu, styleId, description} = req.body;
-  const beer = await Beer.update({name, breweryId, abv, ibu, styleId, description});
-  return res.json(beer);
+  const {id, name, breweryId, abv, ibu, styleId, description} = req.body;
+  const beer = await Beer.findByPk(id);
+  const newBeer = await beer.update({name, breweryId, abv, ibu, styleId, description});
+  return res.json(newBeer);
 }));
 
 // X
@@ -94,8 +95,8 @@ router.delete('/:id', asyncHandler(async(req, res) => {
 router.put('/:id/reviews/:rId', asyncHandler(async(req, res) => {
   const {rId} = req.params;
   const {userId, beerId, review, rating, imageUrl} = req.body;
-  const OldReview = await Review.findByPk(rId)
-  const newReview = await OldReview.update({userId, beerId, review, rating, imageUrl});
+  const oldReview = await Review.findByPk(rId)
+  const newReview = await oldReview.update({userId, beerId, review, rating, imageUrl});
   return res.json(newReview);
 }));
 

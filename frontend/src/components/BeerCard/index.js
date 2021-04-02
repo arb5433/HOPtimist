@@ -63,19 +63,17 @@ let created;
                 Added: {created}
               </div>}
             </div>
-          </NavLink>
-          <div>
             {user && (
-              <div>
+              <div className='user-edit-btns'>
                 {user.id === beer.userId && (
-                  <div>
-                    <button onClick={deleteClick}>Delete</button>
-                    <NavLink to={`/beers/${beer.id}/edit`}>Edit</NavLink>
+                  <div className='user-edit-btns'>
+                    <NavLink className='edit-btn' to={`/beers/${beer.id}/edit`}>Edit</NavLink>
+                    <button className='delete-btn' onClick={deleteClick}>Delete</button>
                   </div>
                 )}
               </div>
             )}
-          </div>
+          </NavLink>
       </div>
       )}
     </div>

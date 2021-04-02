@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 
 import {getBrews} from '../../store/breweries';
-import {getStyles, addOneBeer} from '../../store/beers';
+import {getStyles, updateBeer} from '../../store/beers';
 
 import './EditBeerForm.css'
 
@@ -45,6 +45,7 @@ const EditBeerForm = () => {
   const onSubmit =  async event => {
     event.preventDefault();
     const data = {
+      id: beer.id,
       name,
       breweryId: brew,
       abv,
@@ -53,7 +54,7 @@ const EditBeerForm = () => {
       description,
       userId: user.id
     }
-    await dispatch(addOneBeer(data));
+    await dispatch(updateBeer(data));
     history.push('/');
   }
 

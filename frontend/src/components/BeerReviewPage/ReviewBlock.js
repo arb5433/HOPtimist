@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { destroyReview, loadReviews } from '../../store/reviews';
+import {NavLink} from 'react-router-dom'
+import { destroyReview } from '../../store/reviews';
 import './BeerReviewPage.css'
 
 const userPictureUrl = 'https://user-images.githubusercontent.com/74081636/113229030-229c8500-9264-11eb-9007-101271534ed6.jpeg'
@@ -30,7 +31,7 @@ const ReviewBlock = ({review, beer}) => {
           {user.id === review.userId && (
             <div>
               <button onClick={deleteClick}>Delete</button>
-              <button>Edit</button>
+              <NavLink to={`/beers/${beer.id}/reviews/${review.id}`}>Edit</NavLink>
             </div>
           )}
         </div>

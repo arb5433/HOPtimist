@@ -47,19 +47,19 @@ export const newReview = (review) => async dispatch => {
   }
 };
 
-export const updateReview = (data) => async dispatch => {
-  const response = await fetch(`/api/beers/${data.beerId}/reviews/${data.id}`,{
+export const updateReview = (review) => async dispatch => {
+  const response = await csrfFetch(`/api/beers/${review.beerId}/reviews/${review.id}`,{
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(review),
   });
 
   if(response.ok){
-    const review = await response.json();
-    dispatch(addReview(review));
-    return review;
+    const newReview = await response.json();
+    dispatch(addReview(newReview));
+    return newReview;
   }
 };
 

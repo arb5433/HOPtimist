@@ -76,7 +76,9 @@ export const addOneBeer = (data) => async dispatch => {
 };
 
 export const updateBeer = (data) => async dispatch => {
-  const response = await fetch(`/api/beers/${data.id}`, {
+  console.log('THIS IS DATA *********************************', data);
+
+  const response = await csrfFetch(`/api/beers/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
