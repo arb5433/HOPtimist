@@ -25,7 +25,6 @@ router.get('/reviews/:id', asyncHandler(async(req, res) => {
   return res.json(reviews);
 }));
 
-// X
 // GET list of 10 of the beers
 router.get('/10', asyncHandler(async(req, res) => {
   const beers = await Beer.findAll({include: [BeerStyle, Brewery], limit: 10, order: [['id', 'DESC']]});
@@ -38,14 +37,12 @@ router.get('/', asyncHandler(async(req, res) => {
   return res.json(beers);
 }));
 
-// X
 // GET list of all of the beer styles
 router.get('/styles', asyncHandler(async(req, res) => {
   const styles = await BeerStyle.findAll();
   return res.json(styles);
 }));
 
-// X
 // GET the one beer
 router.get('/:id', asyncHandler(async(req, res) => {
   const {id} = req.params;
@@ -53,7 +50,6 @@ router.get('/:id', asyncHandler(async(req, res) => {
   return res.json(beer);
 }))
 
-// X
 // POST add a new beer
 router.post('/', asyncHandler(async (req, res) => {
   const {name, breweryId, abv, ibu, styleId, description, userId} = req.body;
@@ -66,7 +62,7 @@ router.post('/', asyncHandler(async (req, res) => {
 router.post('/search', asyncHandler(async(req, res) => {
   const {query} = req.body;
   const beers = await Beer.findAll({
-    where: {name: {[Op.substring] : `%${query}%`}},
+    where: {name: {[Op.iLike] : `%${query}%`}},
     include: [BeerStyle, Brewery]
   });
   return res.json(beers);
@@ -79,7 +75,6 @@ router.post('/:id', asyncHandler(async (req, res) => {
   return res.json(newReview);
 }));
 
-// X
 // PUT update a beer that you have already created
 router.put('/:id', asyncHandler(async(req, res) => {
   const {id, name, breweryId, abv, ibu, styleId, description} = req.body;
@@ -88,7 +83,6 @@ router.put('/:id', asyncHandler(async(req, res) => {
   return res.json(newBeer);
 }));
 
-// X
 // DELETE remove a beer that you have added
 router.delete('/:id', asyncHandler(async(req, res) => {
   const {id} = req.params;

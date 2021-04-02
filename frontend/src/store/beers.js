@@ -109,15 +109,14 @@ export const deleteBeer = (id) => async dispatch => {
 };
 
 export const searchBeers = (query) => async dispatch => {
-  console.log('************************inside the thunk*************', query);
   const response = await csrfFetch(`/api/beers/search`, {
     method: 'post',
     body: JSON.stringify(query) ,
   });
-  console.log('*************** Response ******************', response);
 
   if(response.ok){
     const beers = await response.json();
+    console.log('******************** THUNK BEERS ************************', beers); 
     dispatch(searchBeer(beers));
     return beers;
   }

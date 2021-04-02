@@ -29,15 +29,6 @@ const BeerDisplayPage = () => {
 
   const beers = sortList(unOrderedBeers);
 
-  const user = useSelector(state => {
-    return state.session.user;
-  });
-
-  const beerClickHandler = () => {
-    if(user) history.push('/beers');
-    else alert ('Please login or create an account to add a new beer.')
-  }
-
   return (
     <div className='beer-display-page'>
       {beers && <div className='beer-display-page'>
@@ -47,10 +38,6 @@ const BeerDisplayPage = () => {
         </div>
         <div className='beer-cards-display'>
           {beers && beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
-        </div>
-        <div className='add-beer-btn-wrapper'>
-            {/* <NavLink class='add-beer-btn' to='/beers'>Add a new beer</NavLink> */}
-            <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
         </div>
       </div>}
     </div>
