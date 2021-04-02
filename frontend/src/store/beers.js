@@ -9,6 +9,7 @@ const LOAD = 'beers/LOAD';
 const LOAD_STYLES = 'beers/LOAD_STYLES';
 const ADD_BEER = 'beers/ADD_BEER'
 const REMOVE_BEER = 'beers/REMOVE'
+const SEARCH_BEER = 'beers/SEARCH'
 
 // action creators
 const load = beers => ({
@@ -29,7 +30,12 @@ const addBeer = beer => ({
 const removeBeer = id => ({
   type: REMOVE_BEER,
   id
-})
+});
+
+const searchBeer = beers => ({
+  type: SEARCH_BEER,
+  beers
+});
 
 // thunk action creators
 
