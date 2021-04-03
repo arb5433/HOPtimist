@@ -23,7 +23,6 @@ const UserProfile = () => {
   const userStats = useSelector(state => {
     return state.session.userInfo;
   });
-// userStats.Beers, userStats.Reviews
 
   useEffect(() => {
     if (userStats){
@@ -31,8 +30,6 @@ const UserProfile = () => {
       setReviewNum(userStats.Reviews ? userStats.Reviews.length : 0);
     };
   }, [userStats]);
-
-  if(userStats) console.log(userStats.Beers)
   
 
   return (

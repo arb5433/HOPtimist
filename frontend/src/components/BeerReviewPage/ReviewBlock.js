@@ -29,9 +29,9 @@ const ReviewBlock = ({review, beer}) => {
       {user && (
         <div>
           {user.id === review.userId && (
-            <div>
-              <button onClick={deleteClick}>Delete</button>
-              <NavLink to={`/beers/${beer.id}/reviews/${review.id}`}>Edit</NavLink>
+            <div className='user-edit-btns'>
+              <NavLink className='edit-btn' to={`/beers/${beer.id}/reviews/${review.id}`}>Edit</NavLink>
+              <button className='delete-btn' onClick={deleteClick}>Delete</button>
             </div>
           )}
         </div>

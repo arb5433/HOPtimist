@@ -73,6 +73,10 @@
   color: black;
   text-transform: uppercase;
   padding: 2px;
+  border: 1px dotted lightseagreen;
+  margin: 5px;
+  border-radius: 3px;
+  padding: 2px;
 }
 
 .up-list-link:hover{

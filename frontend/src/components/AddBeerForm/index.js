@@ -98,7 +98,7 @@ const AddBeerForm = () => {
           <label className='beer-form-input'>Description: 
             <textarea className='text-area' value={description} onChange={event => setDescription(event.target.value)}/>
           </label>
-          <button type='submit'>Add Beer</button>
+          <button className='add-beer-btn' type='submit'>Add Beer</button>
         </div>
       </form>
     </div>
