@@ -56,7 +56,7 @@ function Navigation({ isLoaded }){
           <img src='https://user-images.githubusercontent.com/74081636/113187950-7472ea00-9227-11eb-99cd-957c08f89c08.jpeg' alt='logo'/>
         </div>
         <div className='home-btn'>
-          <NavLink exact to="/" id="home-button">Home</NavLink>
+          <NavLink exact to="/" id="home-button" className='logout-btn'>Home</NavLink>
           <h2 className='hoptimist-text-nav'>HOPtimist</h2>
         </div>
         <form className='search-form' onSubmit={handleSubmit}>
