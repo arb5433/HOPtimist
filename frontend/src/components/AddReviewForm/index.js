@@ -30,7 +30,6 @@ const AddReviewForm = () => {
     return state.session.user;
   });
 
-
   const onSubmit = event => {
     event.preventDefault();
     const reviewObj = {

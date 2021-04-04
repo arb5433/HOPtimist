@@ -60,7 +60,7 @@ function Navigation({ isLoaded }){
           <h2 className='hoptimist-text-nav'>HOPtimist</h2>
         </div>
         <form className='search-form' onSubmit={handleSubmit}>
-          <input className='search-input' value={search} onChange={(event) => setSearch(event.target.value)}/>
+          <input className='search-input' value={search} onChange={(event) => setSearch(event.target.value)} placeholder='Search for a Beer'/>
           <button className='search-icon' type='submit'>
             <i className='fa fa-search'></i>
           </button>

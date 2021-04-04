@@ -7,9 +7,10 @@ import {csrfFetch} from './csrf';
 // constants
 const LOAD = 'beers/LOAD';
 const LOAD_STYLES = 'beers/LOAD_STYLES';
-const ADD_BEER = 'beers/ADD_BEER'
-const REMOVE_BEER = 'beers/REMOVE'
-const SEARCH_BEER = 'beers/SEARCH'
+const ADD_BEER = 'beers/ADD_BEER';
+const REMOVE_BEER = 'beers/REMOVE';
+const SEARCH_BEER = 'beers/SEARCH';
+const UPDATE_RATING = 'beers/UPDATE_RATING';
 
 // action creators
 const load = beers => ({
@@ -36,6 +37,11 @@ const searchBeer = beers => ({
   type: SEARCH_BEER,
   beers
 });
+
+export const updateRating = rating => ({
+  type: UPDATE_RATING,
+  rating
+})
 
 // thunk action creators
 
@@ -116,14 +122,13 @@ export const searchBeers = (query) => async dispatch => {
 
   if(response.ok){
     const beers = await response.json();
-    console.log('******************** THUNK BEERS ************************', beers); 
     dispatch(searchBeer(beers));
     return beers;
   }
 }
 
 // reducer
-const initialState = {beersList:[],styles:[]}
+const initialState = {beersList:[],styles:[], ratings:{}}
 
 const sortList = (list) => {
   return list.sort((beerA, beerB) => {
@@ -187,6 +192,14 @@ const beerReducer = (state = initialState, action) => {
         ...searchedBeers,
         beersList: sortList(action.beers),
       };
+    }
+    case UPDATE_RATING:{
+      const newRatings = {...state.ratings};
+      newRatings[action.rating[0]] = action.rating[1]
+      return {
+        ...state,
+        ratings: newRatings
+      }
     }
     default:
       return state;
