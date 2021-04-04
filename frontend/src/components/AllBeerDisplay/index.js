@@ -1,17 +1,15 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import {getStartingBeers} from '../../store/beers';
+import {getBeers} from '../../store/beers';
 import BeerCard from '../BeerCard/index';
 
-import './BeerDisplay.css'
-import { NavLink } from 'react-router-dom';
 
 
-const BeerDisplayPage = () => {
+const AllBeerDisplay = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getStartingBeers());
+    dispatch(getBeers());
   },[dispatch])
 
   const sortList = (list) => {
@@ -36,10 +34,9 @@ const BeerDisplayPage = () => {
         <div className='beer-cards-display'>
           {beers && beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
         </div>
-        <NavLink className='load-all-beers' to='/all'>Load more beers</NavLink>
       </div>}
     </div>
   );
 };
 
-export default BeerDisplayPage;
+export default AllBeerDisplay;

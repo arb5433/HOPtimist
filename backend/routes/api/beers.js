@@ -32,8 +32,14 @@ router.get('/10', asyncHandler(async(req, res) => {
 }));
 
 // GET list of all of the beers
+router.get('/all', asyncHandler(async(req, res) => {
+  const beers = await Beer.findAll({include: [BeerStyle, Brewery], order: [['id', 'DESC']]});
+  return res.json(beers);
+}));
+
+// GET list of starting beers
 router.get('/', asyncHandler(async(req, res) => {
-  const beers = await Beer.findAll({include: [BeerStyle, Brewery]});
+  const beers = await Beer.findAll({include: [BeerStyle, Brewery], limit: 10, order: [['id', 'DESC']]});
   return res.json(beers);
 }));
 

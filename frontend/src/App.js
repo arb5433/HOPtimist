@@ -12,6 +12,7 @@ import EditBeerForm from './components/EditBeerForm';
 import EditReviewForm from './components/EditReviewForm';
 import UserProfile from './components/UserProfile';
 import BeerSearch from './components/BeerSearch';
+import AllBeerDisplay from './components/AllBeerDisplay';
 
 function App() {
   // restores the user to the store on a refresh
@@ -31,6 +32,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <BeerDisplayPage/>
+            </Route>
+            <Route exact path="/all">
+              <AllBeerDisplay/>
             </Route>
             <Route exact path='/beers/search'>
               <BeerSearch/>
@@ -60,6 +64,7 @@ function App() {
         )}
       </div>
       <div className='footer'>
+          <a className='dev-name' href='https://github.com/arb5433/HOPtimist/wiki'>HOPtimist Wiki</a>
           <div className='dev-name'>Created By: Adam Bailey</div>
           <a className='dev-name' href='https://github.com/arb5433'>Github Profile</a>
       </div>

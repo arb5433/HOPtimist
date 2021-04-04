@@ -46,7 +46,7 @@ export const updateRating = rating => ({
 // thunk action creators
 
 export const getBeers = () => async dispatch => {
-  const response = await fetch('/api/beers');
+  const response = await fetch('/api/beers/all');
   if(response.ok){
     const beers = await response.json();
     dispatch(load(beers));
@@ -60,6 +60,14 @@ export const getStyles = () => async dispatch => {
     dispatch(loadStyles(styles));
   };
 };
+
+export const getStartingBeers = () => async dispatch => {
+  const response = await fetch('/api/beers');
+  if (response.ok){
+    const beers = await response.json();
+    dispatch(load(beers))
+  }
+}
 
 export const getOneBeer = (id) => async dispatch => {
   const response = await fetch(`/api/beers/${id}`);
