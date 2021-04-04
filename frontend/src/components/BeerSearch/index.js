@@ -2,6 +2,8 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import BeerCard from '../BeerCard';
 
+import './BeerSearch.css'
+
 const BeerSearch = () => {
   const history = useHistory();
 
@@ -19,20 +21,25 @@ const BeerSearch = () => {
   };
 
   if(beers.length){
-    console.log('********************* FOUND RESULTS ******************')
     return (
-      <div>
-        {beers.map(beer => {
-          return <BeerCard beer={beer}/>
-        })}
+      <div className='search-page-wrapper'>
+        <div className='search-cards-wrapper'>
+          {beers.map(beer => {
+            return <BeerCard beer={beer}/>
+          })}
+        </div>
+        <p className='can-not-find'>Can not find the beer you are looking for? Please add it to our list below.</p>
+        <div className='abb-wrapper'>
+            <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
+        </div>
       </div>
     )
   } else {
     return (
-      <div>
-        <div>Image of an empty glass</div>
-        <p>Could not find searched beer, would you like to add it to our list?</p>
-        <div className='add-beer-btn-wrapper'>
+      <div className='empty-wrapper'>
+        <div className='empty-banner'/>
+        <p className='can-not-find'>Could not find searched beer, would you like to add it to our list?</p>
+        <div className='abb-wrapper'>
             <button className='add-beer-btn' onClick={beerClickHandler}>Add a new beer</button>
         </div>
       </div>

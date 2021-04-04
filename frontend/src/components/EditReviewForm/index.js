@@ -1,11 +1,9 @@
 import {useParams, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
-
 import {getBeers} from '../../store/beers';
 import {updateReview} from '../../store/reviews';
 import BeerCard from '../BeerCard';
-import { set } from 'js-cookie';
 
 const EditReviewForm = () => {
   const dispatch = useDispatch();

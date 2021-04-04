@@ -36,7 +36,7 @@ const UserProfile = () => {
     <div className='user-page-wrapper'>
       <div className='user-banner'>
         <div className='up-user-picture'>
-          <img className='user-picture' src={userPictureUrl}/>
+          <img className='user-picture' src={userPictureUrl} alt='user profile'/>
         </div>
         <div className='up-name'>
           <h1>{user.username}</h1>

@@ -61,7 +61,7 @@ let created;
           <NavLink className='beer-card-wrapper beer-card-link' to={`/beers/${beer.id}`}>
             <div className='bch-wrapper'>
               <div className='beer-card-header'>
-                <img className='beer-card-img' src='https://user-images.githubusercontent.com/74081636/113222582-5ae89700-9255-11eb-927c-75a82f62ee33.jpeg'/>
+                <img className='beer-card-img' src='https://user-images.githubusercontent.com/74081636/113222582-5ae89700-9255-11eb-927c-75a82f62ee33.jpeg' alt='brewery logo goes here'/>
                 <div className='beer-card-name-style-brew'>
                   <h2 className='beer-card-name'>{beer.name}</h2>
                   <div className='brew-style-wrapper'>
@@ -70,7 +70,10 @@ let created;
                   </div>
                 </div>
               </div>
-              <button className='add-wishlist'>+ Wishlist</button>
+              <div className='wl-ar-wrapper'>
+                <button className='add-wishlist'>+ Wishlist</button>
+                <NavLink className='add-review-btn' to={`/beers/${beer.id}/reviews`}>+ Review</NavLink>
+              </div>
             </div>
             <div className='beer-card-description'>{beer.description}</div>
             <div className='beer-card-specs'>

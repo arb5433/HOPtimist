@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 import {getBrews} from '../../store/breweries';
-import {getStyles, addOneBeer, getBeers} from '../../store/beers';
+import {getStyles, addOneBeer} from '../../store/beers';
 
 import './AddBeerForm.css'
 

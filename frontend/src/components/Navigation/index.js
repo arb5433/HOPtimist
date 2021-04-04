@@ -34,12 +34,6 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <>
-        <form onSubmit={handleSubmit}>
-          <input className='search-input' value={search} onChange={(event) => setSearch(event.target.value)}/>
-          <button className='search-icon' type='submit'>
-            <i className='fa fa-search'></i>
-          </button>
-        </form>
         <button className='logout-btn' onClick={logout}>Log Out</button>
         <button className='profile-icon' onClick={profileClick}>
           <i className="fas fa-beer"></i>
@@ -59,7 +53,7 @@ function Navigation({ isLoaded }){
     <ul className='navbar-container'>
       <li id="navbar">
         <div className='logo'>
-          <img src='https://user-images.githubusercontent.com/74081636/113187950-7472ea00-9227-11eb-99cd-957c08f89c08.jpeg'/>
+          <img src='https://user-images.githubusercontent.com/74081636/113187950-7472ea00-9227-11eb-99cd-957c08f89c08.jpeg' alt='logo'/>
         </div>
         <div className='home-btn'>
           <NavLink exact to="/" id="home-button">Home</NavLink>
