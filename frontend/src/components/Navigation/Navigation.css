@@ -97,3 +97,22 @@
 }
 
 
+.new-home-button-name{
+  text-decoration: none;
+  padding: 5px;
+  border: 4px solid black;
+  width: 75px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  font-family: 'Aclonica', sans-serif;
+}
+
+.new-home-button-name:hover{
+  color: black;
+  background-color: green;
+}
+
+
