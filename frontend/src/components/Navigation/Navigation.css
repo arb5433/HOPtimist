@@ -28,7 +28,7 @@
 .sessionLinks{
   grid-column: 4;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
 }
 
