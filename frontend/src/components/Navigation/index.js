@@ -17,6 +17,7 @@ function Navigation({ isLoaded }){
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/');
   };
 
   const profileClick = (event) => {
@@ -34,7 +35,7 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <>
-        <button className='logout-btn' onClick={logout}>Log Out</button>
+        <button className='new-logout-btn' onClick={logout}>Log Out</button>
         <button className='profile-icon' onClick={profileClick}>
           <i className="fas fa-beer"></i>
         </button>
