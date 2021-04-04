@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteBeer, getBeers} from '../../store/beers'
@@ -8,6 +8,7 @@ import './BeerCard.css'
 
 const BeerCard = ({beer}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [totalRating, setTotalRating] = useState(0);
 
@@ -38,6 +39,7 @@ const BeerCard = ({beer}) => {
   const deleteClick = async (event) => {
     await dispatch(deleteBeer(beer.id));
     await dispatch(getBeers());
+    history.push('/');
   }
 let created;
 
