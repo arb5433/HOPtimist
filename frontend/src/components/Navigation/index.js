@@ -26,25 +26,22 @@ function Navigation({ isLoaded }){
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('***************SEARCH *************',search);
     dispatch(searchBeers({query: search}));
     history.push('/beers/search');
   }
-
-  console.log('********* TEST ****************');
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
         <form onSubmit={handleSubmit}>
-          <input value={search} onChange={(event) => setSearch(event.target.value)}/>
-          <button type='submit'>
+          <input className='search-input' value={search} onChange={(event) => setSearch(event.target.value)}/>
+          <button className='search-icon' type='submit'>
             <i className='fa fa-search'></i>
           </button>
         </form>
         <button className='logout-btn' onClick={logout}>Log Out</button>
-        <button onClick={profileClick}>
+        <button className='profile-icon' onClick={profileClick}>
           <i className="fas fa-beer"></i>
         </button>
       </>
@@ -68,6 +65,12 @@ function Navigation({ isLoaded }){
           <NavLink exact to="/" id="home-button">Home</NavLink>
           <h2 className='hoptimist-text-nav'>HOPtimist</h2>
         </div>
+        <form className='search-form' onSubmit={handleSubmit}>
+          <input className='search-input' value={search} onChange={(event) => setSearch(event.target.value)}/>
+          <button className='search-icon' type='submit'>
+            <i className='fa fa-search'></i>
+          </button>
+        </form>
         <div className='sessionLinks'>
           {isLoaded && sessionLinks}
         </div>
