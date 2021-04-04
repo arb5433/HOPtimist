@@ -10,10 +10,11 @@
   justify-content: center;
   background: white;
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .outer-beer-card{
-  height: 300px;
+  height: 325px;
 }
 
 .beer-card-link{

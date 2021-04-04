@@ -1,9 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
 import {useParams, NavLink} from 'react-router-dom';
-
+import {getBeers} from '../../store/beers';
 import {loadReviews} from '../../store/reviews';
-
 import ReviewBlock from './ReviewBlock';
 import BeerCard from '../BeerCard';
 
@@ -27,6 +26,10 @@ const BeerReviewPage = () => {
   });
 
   const reviews = sortList(unOrderedReviews);
+
+  useEffect(() => {
+    dispatch(getBeers());
+  },[dispatch])
 
   const beer = useSelector(state => {
     return state.beer[id];

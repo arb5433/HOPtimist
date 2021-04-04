@@ -20,6 +20,18 @@ const LoginForm = () => {
       });
   };
 
+  const demoClick = event => {
+    event.preventDefault();
+    setErrors([]);
+    const credential = 'Demo-lition';
+    const password = 'password';
+    return dispatch(sessionActions.login({credential, password}))
+      .catch(async res => {
+        const data = await res.json();
+        if(data.errors) setErrors(data.errors);
+      });
+  };
+
   return (
     <form className='modal-form' onSubmit={onSubmit} id>
       <div className='hoptimist-text-wrapper'>
@@ -50,6 +62,7 @@ const LoginForm = () => {
         />
       </label>
       <button type="submit" id="login-button">Log In</button>
+      <button id="login-button" onClick={demoClick}>Demo User Log In</button>
     </form>
   );
 };

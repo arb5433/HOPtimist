@@ -20,10 +20,10 @@ const ReviewBlock = ({review, beer}) => {
 
   return(
     <div className='review-wrapper'>
-      <div className='user-wrapper'>
+      {beer && <div className='user-wrapper'>
         <img className='user-picture' src={userPictureUrl} alt='user-profile'/>
         {review.User && <p className='review-auth'>{review.User.username} left a review for {beer.name} by {beer.Brewery.name}.</p>}
-      </div>
+      </div>}
       <p className='review-text'>{review.review}</p>
       <p className='review-rating'>Rated &#127867;{review.rating} &#127867;</p>
       {user && (
