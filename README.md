@@ -27,3 +27,18 @@ By using the searchbar a user can check if we have the beer that they are lookin
 
 ![hoptimist1](https://user-images.githubusercontent.com/74081636/120830686-c2a8b000-c52c-11eb-8555-bcac694c670e.png)
 ![hoptimist2](https://user-images.githubusercontent.com/74081636/120830697-c63c3700-c52c-11eb-9bd9-fcfa818dcbdb.png)
+
+### Beer Display Page and Reviews
+
+By clicking on one of the beer cards shown on either the home page or the search page you will be redirected to the specific beer page. This page displays all reviews, as well as who left the review, and gives the user options to add a review or add the beer to their wishlist. Once the add review button is clicked, it hides the reviews and replaces them with a form where the user can leave his own review, upon submission the review is added and it renders the updated reviews page.
+
+![hoptimist4](https://user-images.githubusercontent.com/74081636/120830708-c805fa80-c52c-11eb-9bc8-72f5c7546151.png)
+![hoptimist5](https://user-images.githubusercontent.com/74081636/120830715-c9372780-c52c-11eb-846a-2af94be570f9.png)
+
+### User Page
+
+The final page that was worked on is the user page. From here a logged in user can check out any beers that they have added, reviews that they have left, and their wishlist. From here a user can review what they have done in the past, check any updated reviews for products, and see which products they would like to sample in the future. 
+
+![hoptimist6](https://user-images.githubusercontent.com/74081636/120830675-c0465600-c52c-11eb-9a96-83bfdc8e6d39.png)
+
+More information about the database, API routes, or frontend routes can be found by checking out the [Hoptimist Wiki](https://github.com/arb5433/HOPtimist/wiki).
