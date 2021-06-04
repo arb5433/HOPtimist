@@ -10,7 +10,7 @@
   justify-content: center;
   background: white;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .outer-beer-card{
@@ -45,7 +45,7 @@
 }
 
 .beer-card-description{
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 90px;
   color: black;
   padding: 20px;

@@ -133,6 +133,15 @@
   background-color: green;
 }
 
+.logo{
+  background-image: url('https://user-images.githubusercontent.com/74081636/120856173-702bbb80-c54d-11eb-82ad-49c349a21540.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 200px;
+  margin-top: .3em;
+  cursor: pointer;
+}
+
 
 
 

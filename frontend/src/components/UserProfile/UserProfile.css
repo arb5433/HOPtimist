@@ -53,7 +53,7 @@
   border: 1px solid darkgreen;
   border-radius: 5px;
   padding: 1em;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .up-wishlist-outer, 
