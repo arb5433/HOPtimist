@@ -1,7 +1,15 @@
+
 import LoginFormModal from "../LoginFormModal"
 import SignupFormModal from "../SignupFormModal"
 
 function SplashPage(){
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(searchBeers({query: search}));
+    history.push('/beers/search');
+  }
+
   return (
     <div>
       <div className='splash-page-banner'>
