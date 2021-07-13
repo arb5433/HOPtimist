@@ -1,9 +1,11 @@
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
 import LoginFormModal from "../LoginFormModal"
 import SignupFormModal from "../SignupFormModal"
 
 function SplashPage(){
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
