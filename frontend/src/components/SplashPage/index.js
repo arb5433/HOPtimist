@@ -9,6 +9,8 @@ function SplashPage(){
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [search, setSearch] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(searchBeers({query: search}));
