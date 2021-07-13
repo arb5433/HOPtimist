@@ -1,4 +1,4 @@
-import { NavLink, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState} from 'react';
 import {searchBeers} from '../../store/beers';
