@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
+import { searchBeers } from "../../store/beers";
 import LoginFormModal from "../LoginFormModal"
 import SignupFormModal from "../SignupFormModal"
 
