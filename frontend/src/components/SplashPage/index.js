@@ -31,6 +31,7 @@ function SplashPage(){
           </button>
         </form>
         <button>Browse</button>
+        {/* set up button to redirect to the new most popular page when done */}
       </div>
     </div>
   )
