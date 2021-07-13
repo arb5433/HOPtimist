@@ -13,6 +13,7 @@ import EditReviewForm from './components/EditReviewForm';
 import UserProfile from './components/UserProfile';
 import BeerSearch from './components/BeerSearch';
 import AllBeerDisplay from './components/AllBeerDisplay';
+import SplashPage from "./components/SplashPage";
 
 function App() {
   // restores the user to the store on a refresh
@@ -59,6 +60,9 @@ function App() {
             </Route>
             <Route path ='/users/profile'>
               <UserProfile/>
+            </Route>
+            <Route path='/test'>
+              <SplashPage/>
             </Route>
           </Switch>
         )}
