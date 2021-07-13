@@ -1,8 +1,9 @@
-
+import { useHistory } from "react-router";
 import LoginFormModal from "../LoginFormModal"
 import SignupFormModal from "../SignupFormModal"
 
 function SplashPage(){
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
