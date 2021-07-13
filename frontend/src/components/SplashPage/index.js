@@ -15,6 +15,7 @@ function SplashPage(){
             <i className='fa fa-search'></i>
           </button>
         </form>
+        <button>Browse</button>
       </div>
     </div>
   )
