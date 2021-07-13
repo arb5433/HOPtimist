@@ -36,4 +36,6 @@ function SplashPage(){
   )
 }
 
+// needs css
+
 export default SplashPage;
