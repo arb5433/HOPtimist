@@ -14,6 +14,8 @@ const TopRated = () => {
     return state.beer.beersList.map(beerId => state.beer[beerId]);
   });
 
+  const beers = null;
+
   // sort the beers by their ratings
 
   return (
