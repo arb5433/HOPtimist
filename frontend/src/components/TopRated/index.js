@@ -35,3 +35,5 @@ const TopRated = () => {
     </div>
   );
 }
+
+export default TopRated;
