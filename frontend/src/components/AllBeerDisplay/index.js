@@ -26,6 +26,7 @@ const AllBeerDisplay = () => {
 
   return (
     <div className='beer-display-page'>
+    {/* dont need className on the outer wrapper */}
       {beers && <div className='beer-display-page'>
         <img className='banner' src='https://user-images.githubusercontent.com/74081636/113198408-dfc2b900-9233-11eb-9e62-da36b528a433.png' alt='banner'/>
         <div className='beer-display-head'>

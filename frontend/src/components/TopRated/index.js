@@ -24,6 +24,12 @@ const TopRated = () => {
         <div>Breweries</div>
       </div>
       <div>explanation of ratings for beers/ explaining that brews are a wip</div>
+      <div>
+        {/* filters added in here for style and countries */}
+        <div className='beer-cards-display'>
+          {beers && beers.map(beer => <BeerCard key={beer.id} beer={beer}/>)}
+        </div>
+      </div>
     </div>
   );
 }
