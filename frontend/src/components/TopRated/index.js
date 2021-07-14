@@ -17,6 +17,6 @@ const TopRated = () => {
   // sort the beers by their ratings
 
   return (
-    null
+    
   );
 }
