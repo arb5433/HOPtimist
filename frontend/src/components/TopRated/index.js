@@ -10,8 +10,10 @@ const TopRated = () => {
     dispatch(getBeers());
   }, [dispatch]);
 
+  const allBeers = useSelector(state => {
+    return state.beer.beersList.map(beerId => state.beer[beerId]);
+  });
 
-  
   return (
     null
   );
