@@ -17,6 +17,13 @@ const TopRated = () => {
   // sort the beers by their ratings
 
   return (
-    
+    <div>
+      <div>Top Rated Beers</div>
+      <div>
+        <div>Beers</div>
+        <div>Breweries</div>
+      </div>
+      <div>explanation of ratings for beers/ explaining that brews are a wip</div>
+    </div>
   );
 }
