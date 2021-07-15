@@ -37,3 +37,9 @@ const TopRated = () => {
 }
 
 export default TopRated;
+
+// steps to change how the ratings are calculated and save it for each
+// step 1) add ratings into the store
+// step 2) pull all reviews for all beers (only need ratings off reviews)
+// step 3) store them in the store as an object i.e. ratings = {beerId : [...ratings]}
+// use this state to change how the reviews render on the pages and it should fix it 
